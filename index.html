@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Spa | Massage & Wellness</title>
+    
+    <!-- Google Fonts for a luxurious feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            100: '#eef2ec',
+                            300: '#b2c3ac',
+                            500: '#879a80',
+                            700: '#5a6b54',
+                            900: '#364231'
+                        },
+                        cream: '#fdfbf7',
+                        sand: '#e6d5c3',
+                        charcoal: '#333333'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles for subtle animations and base elements not covered by Tailwind */
+        body {
+            background-color: #fdfbf7; /* cream */
+            color: #333333; /* charcoal */
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero image overlay gradient for better text readability */
+        .hero-overlay {
+            background: linear-gradient(rgba(54, 66, 49, 0.4), rgba(54, 66, 49, 0.6));
+        }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-cream/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <svg class="h-8 w-8 text-sage-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span class="font-serif text-2xl font-semibold text-sage-900 tracking-wide">Serenity</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-sage-500 transition-colors duration-200">About</a>
+                    <a href="#services" class="text-gray-600 hover:text-sage-500 transition-colors duration-200">Services</a>
+                    <a href="#booking" class="text-gray-600 hover:text-sage-500 transition-colors duration-200">Contact</a>
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#booking" class="bg-sage-500 text-white px-6 py-2 rounded-full hover:bg-sage-700 transition-colors duration-300 shadow-md">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center">
+        <!-- Background Image (Using a placeholder from Unsplash that fits the vibe) -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Spa Massage" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in mt-16">
+            <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-md">
+                Find Your <br/><span class="italic text-sand">Inner Peace</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-light drop-shadow-sm">
+                Rejuvenate your body, calm your mind, and restore your spirit with our tailored, luxurious massage therapies.
+            </p>
+            <a href="#booking" class="inline-block bg-white text-sage-900 font-semibold px-8 py-4 rounded-full text-lg hover:bg-sand hover:text-sage-900 transition-all duration-300 shadow-lg transform hover:-translate-y-1">
+                Book Your Escape
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-cream">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Relaxing Spa Environment" class="rounded-t-full rounded-bl-full shadow-xl object-cover h-[500px] w-full" onerror="this.style.display='none'">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="font-serif text-4xl text-sage-900 mb-6">A Sanctuary for Your Wellbeing</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        At Serenity, we believe that true wellness begins with deep relaxation. Our tranquil space is designed to transport you away from the hustle and bustle of daily life into a world of calm.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Our licensed and highly trained therapists customize every session to your specific needs, using premium organic oils and holistic techniques to ensure you leave feeling balanced, restored, and completely renewed.
+                    </p>
+                    <div class="flex items-center space-x-4 text-sage-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="font-semibold">Licensed Professionals</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sage-700 mt-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="font-semibold">Organic, Cruelty-Free Products</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-sage-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl text-sage-900 mb-4">Our Curated Therapies</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Choose from our selection of specialized massages, each designed to provide a unique path to relaxation and recovery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-sage-100">
+                    <div class="w-12 h-12 bg-sage-100 text-sage-700 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-sage-900 mb-2">Swedish Massage</h3>
+                    <p class="text-gray-600 mb-6 min-h-[80px]">Gentle, flowing strokes designed to ease tension, improve circulation, and promote total body relaxation. Perfect for first-timers.</p>
+                    <div class="flex justify-between items-end border-t border-gray-100 pt-4 mt-auto">
+                        <div class="text-sm text-gray-500">60 min / 90 min</div>
+                        <div class="font-semibold text-sage-700">$85 / $120</div>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-sage-100">
+                    <div class="w-12 h-12 bg-sage-100 text-sage-700 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-sage-900 mb-2">Deep Tissue</h3>
+                    <p class="text-gray-600 mb-6 min-h-[80px]">Intense pressure targets deep muscle layers and connective tissue to relieve chronic pain and muscle stiffness.</p>
+                    <div class="flex justify-between items-end border-t border-gray-100 pt-4 mt-auto">
+                        <div class="text-sm text-gray-500">60 min / 90 min</div>
+                        <div class="font-semibold text-sage-700">$100 / $140</div>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-sage-100">
+                    <div class="w-12 h-12 bg-sage-100 text-sage-700 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-sage-900 mb-2">Aromatherapy</h3>
+                    <p class="text-gray-600 mb-6 min-h-[80px]">Combines soothing massage techniques with highly concentrated plant oils to balance emotions and enhance physical wellbeing.</p>
+                    <div class="flex justify-between items-end border-t border-gray-100 pt-4 mt-auto">
+                        <div class="text-sm text-gray-500">75 min</div>
+                        <div class="font-semibold text-sage-700">$115</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration / Booking Form Section -->
+    <section id="booking" class="py-24 bg-white relative overflow-hidden">
+        <!-- Decorative background circle -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-sage-100 rounded-full opacity-50 blur-3xl z-0"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-sand rounded-full opacity-30 blur-3xl z-0"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-cream rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                
+                <!-- Info Side -->
+                <div class="bg-sage-700 text-white p-10 md:w-2/5 flex flex-col justify-between">
+                    <div>
+                        <h2 class="font-serif text-3xl mb-4">Request an Appointment</h2>
+                        <p class="text-sage-100 mb-8 font-light">Fill out the form to request your preferred time. We will contact you shortly to confirm your booking.</p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center text-sage-100">
+                                <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                123 Wellness Way, Suite 100
+                            </div>
+                            <div class="flex items-center text-sage-100">
+                                <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                (555) 123-4567
+                            </div>
+                            <div class="flex items-center text-sage-100">
+                                <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                hello@serenityspa.com
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm text-sage-300">Open Mon-Sat: 9am - 8pm</p>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="p-10 md:w-3/5 bg-white relative">
+                    
+                    <!-- Form Success Message (Hidden by default) -->
+                    <div id="success-message" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center p-8 text-center z-20">
+                        <div class="w-16 h-16 bg-sage-100 text-sage-500 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        <h3 class="font-serif text-3xl text-sage-900 mb-2">Thank You!</h3>
+                        <p class="text-gray-600 mb-6">Your booking request has been received. We will contact you shortly to confirm your appointment.</p>
+                        <button onclick="resetForm()" class="text-sage-500 font-medium hover:text-sage-700 underline">Submit another request</button>
+                    </div>
+
+                    <!-- 
+                        EMAIL INTEGRATION NOTE: 
+                        Replace the action URL below with your real Formspree or Web3Forms URL.
+                        Example: action="https://formspree.io/f/xbjvqewr"
+                    -->
+                    <form id="contact-form" action="https://formspree.io/f/your_endpoint_here" method="POST" class="space-y-5">
+                        
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50">
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Preferred Date <span class="text-gray-400 font-normal">(Optional)</span></label>
+                                <input type="date" id="date" name="date" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50 text-gray-600">
+                            </div>
+                            <div>
+                                <label for="time" class="block text-sm font-medium text-gray-700 mb-1">Preferred Time <span class="text-gray-400 font-normal">(Optional)</span></label>
+                                <select id="time" name="time" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50 text-gray-600">
+                                    <option value="" disabled selected>Select a time</option>
+                                    <option value="morning">Morning (9am - 12pm)</option>
+                                    <option value="afternoon">Afternoon (12pm - 4pm)</option>
+                                    <option value="evening">Evening (4pm - 8pm)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Tell us about any specific areas of tension or preferences..." class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="w-full bg-sage-500 text-white font-semibold py-4 rounded-lg hover:bg-sage-700 transition-colors duration-300 shadow-md flex justify-center items-center">
+                            <span id="btn-text">Request Appointment</span>
+                            <svg id="btn-spinner" class="animate-spin ml-2 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-sage-900 text-sage-100 py-12 text-center">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center">
+            <div class="flex items-center mb-6 opacity-80">
+                <svg class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <span class="font-serif text-xl tracking-wide">Serenity</span>
+            </div>
+            <p class="text-sage-300 text-sm mb-2">&copy; 2024 Serenity Spa. All rights reserved.</p>
+            <p class="text-sage-500 text-xs">Designed for deep relaxation.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Form Handling and Interactions -->
+    <script>
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop standard redirect
+            
+            // Show loading state
+            btnText.textContent = "Sending...";
+            btnSpinner.classList.remove('hidden');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const actionUrl = form.getAttribute('action');
+            
+            // If it's still the placeholder URL, simulate a success safely
+            if (actionUrl.includes('your_endpoint_here')) {
+                setTimeout(() => {
+                    showSuccess();
+                }, 1500); // Simulate network delay
+                return;
+            }
+
+            // Real submission logic via AJAX for Formspree/Web3Forms
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showSuccess();
+                } else {
+                    // Revert button and show basic error message
+                    alert("Oops! There was a problem submitting your form.");
+                    resetBtnState();
+                }
+            } catch (error) {
+                alert("Network error! Please try again.");
+                resetBtnState();
+            }
+        });
+
+        function showSuccess() {
+            successMessage.classList.remove('hidden');
+            successMessage.classList.add('fade-in');
+            resetBtnState();
+            form.reset(); // Clear inputs
+        }
+
+        function resetForm() {
+            successMessage.classList.add('hidden');
+        }
+
+        function resetBtnState() {
+            btnText.textContent = "Request Appointment";
+            btnSpinner.classList.add('hidden');
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+        }
+
+        // Change nav background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>

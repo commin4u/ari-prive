@@ -545,9 +545,9 @@
                         </button>
                     </div>
 
-                    <!-- Email Integration Action Form -->
+                    <!-- Email Integration Action Form (Configured with Web3Forms) -->
                     <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-                    <input type="hidden" name="access_key" value="20324262-2f4e-4ede-9d02-ff48ec177689">
+                        <input type="hidden" name="access_key" value="20324262-2f4e-4ede-9d02-ff48ec177689">
 
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
@@ -579,17 +579,11 @@
                                     <span class="lang-ru">Желаемое Время <span class="text-gray-400 font-normal">(Опционально)</span></span>
                                 </label>
                                 <select id="time" name="time" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50 text-gray-600">
-                                    <!-- Romanian option titles -->
-                                    <option class="lang-ro" value="" disabled selected>Selectează un interval</option>
-                                    <option class="lang-ro" value="morning">Dimineață (10:00 - 14:00)</option>
-                                    <option class="lang-ro" value="afternoon">După-amiază (14:00 - 18:00)</option>
-                                    <option class="lang-ro" value="evening">Seară (18:00 - 22:00)</option>
-
-                                    <!-- Russian option titles -->
-                                    <option class="lang-ru" value="" disabled selected>Выберите интервал</option>
-                                    <option class="lang-ru" value="morning">Утро (10:00 - 14:00)</option>
-                                    <option class="lang-ru" value="afternoon">День (14:00 - 18:00)</option>
-                                    <option class="lang-ru" value="evening">Вечер (18:00 - 22:00)</option>
+                                    <!-- Options translated dynamically via JS -->
+                                    <option value="" disabled selected id="opt-placeholder"></option>
+                                    <option value="morning" id="opt-morning"></option>
+                                    <option value="afternoon" id="opt-afternoon"></option>
+                                    <option value="evening" id="opt-evening"></option>
                                 </select>
                             </div>
                         </div>
@@ -652,14 +646,24 @@
                 btnSending: "Se trimite...",
                 btnDefault: "Solicită Programare",
                 alertFormError: "Ups! A apărut o problemă la trimiterea formularului.",
-                alertNetworkError: "Eroare de rețea! Vă rugăm să încercați din nou."
+                alertNetworkError: "Eroare de rețea! Vă rugăm să încercați din nou.",
+                // Meniu derulant traducere
+                selectPlaceholder: "Selectează un interval",
+                selectMorning: "Dimineață (10:00 - 14:00)",
+                selectAfternoon: "După-amiază (14:00 - 18:00)",
+                selectEvening: "Seară (18:00 - 22:00)"
             },
             ru: {
                 placeholderNotes: "Напишите, какие услуги вы хотите получить или укажите проблемные зоны...",
                 btnSending: "Отправка...",
                 btnDefault: "Запросить Запись",
                 alertFormError: "Ой! Возникла проблема при отправке формы.",
-                alertNetworkError: "Ошибка сети! Пожалуйста, попробуйте еще раз."
+                alertNetworkError: "Ошибка сети! Пожалуйста, попробуйте еще раз.",
+                // Выбор интервала перевод
+                selectPlaceholder: "Выберите интервал",
+                selectMorning: "Утро (10:00 - 14:00)",
+                selectAfternoon: "День (14:00 - 18:00)",
+                selectEvening: "Вечер (18:00 - 22:00)"
             }
         };
 
@@ -684,10 +688,15 @@
             // Update placeholder inputs
             document.getElementById('notes').placeholder = translations[lang].placeholderNotes;
 
+            // Translate Select Dropdown Options safely
+            document.getElementById('opt-placeholder').textContent = translations[lang].selectPlaceholder;
+            document.getElementById('opt-morning').textContent = translations[lang].selectMorning;
+            document.getElementById('opt-afternoon').textContent = translations[lang].selectAfternoon;
+            document.getElementById('opt-evening').textContent = translations[lang].selectEvening;
+
             // Update submit button text if not sending
             const btnTextContainer = document.getElementById('btn-text');
             if (!submitBtn.disabled) {
-                // Ensure inner text gets properly updated while preserving inner translation nodes if any
                 btnTextContainer.innerHTML = `<span class="lang-ro">Solicită Programare</span><span class="lang-ru">Запросить Запись</span>`;
             }
         }
@@ -717,7 +726,7 @@
                 return;
             }
 
-            // Real submission logic via AJAX for Formspree/Web3Forms
+            // Real submission logic via AJAX for Web3Forms
             try {
                 const formData = new FormData(form);
                 const response = await fetch(actionUrl, {

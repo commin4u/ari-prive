@@ -565,6 +565,39 @@
                             <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sage-500 focus:ring-2 focus:ring-sage-200 outline-none transition-colors bg-gray-50">
                         </div>
 
+                        <!-- Preferred Contact Methods (Mandatory selection) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <span class="lang-ro">Cum doriți să vă contactăm? <span class="text-red-500">*</span></span>
+                                <span class="lang-ru">Как с вами связаться? <span class="text-red-500">*</span></span>
+                            </label>
+                            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4" id="contact-methods-group">
+                                <label class="flex items-center space-x-2 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-sage-100 transition-colors">
+                                    <input type="checkbox" name="contact_by_phone" value="Da" class="contact-method-checkbox h-4 w-4 text-sage-500 focus:ring-sage-200 border-gray-300 rounded">
+                                    <span class="text-sm text-gray-700 select-none">
+                                        <span class="lang-ro">Telefon</span>
+                                        <span class="lang-ru">Телефон</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-sage-100 transition-colors">
+                                    <input type="checkbox" name="contact_by_telegram" value="Da" class="contact-method-checkbox h-4 w-4 text-sage-500 focus:ring-sage-200 border-gray-300 rounded">
+                                    <span class="text-sm text-gray-700 select-none">Telegram</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-sage-100 transition-colors">
+                                    <input type="checkbox" name="contact_by_whatsapp" value="Da" class="contact-method-checkbox h-4 w-4 text-sage-500 focus:ring-sage-200 border-gray-300 rounded">
+                                    <span class="text-sm text-gray-700 select-none">WhatsApp</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-pointer hover:bg-sage-100 transition-colors">
+                                    <input type="checkbox" name="contact_by_viber" value="Da" class="contact-method-checkbox h-4 w-4 text-sage-500 focus:ring-sage-200 border-gray-300 rounded">
+                                    <span class="text-sm text-gray-700 select-none">Viber</span>
+                                </label>
+                            </div>
+                            <p id="contact-method-error" class="hidden text-xs text-red-500 mt-1.5 font-medium">
+                                <span class="lang-ro">Vă rugăm să selectați cel puțin o metodă de contact.</span>
+                                <span class="lang-ru">Пожалуйста, выберите хотя бы один способ связи.</span>
+                            </p>
+                        </div>
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
                                 <label for="date" class="block text-sm font-medium text-gray-700 mb-1">
@@ -642,7 +675,7 @@
         // Dynamic placeholders dictionary
         const translations = {
             ro: {
-                placeholderNotes: "Spune-ne ce servicii dorești sau detalii despre eventuale zone de tensiune...",
+                placeholderNotes: "Spune-ne ce servicii dorești sau detalii despre eventuale zone de tensionare...",
                 btnSending: "Se trimite...",
                 btnDefault: "Solicită Programare",
                 alertFormError: "Ups! A apărut o problemă la trimiterea formularului.",
@@ -706,8 +739,39 @@
             changeLanguage('ro');
         });
 
+        // Live validation for the checkboxes
+        const checkboxes = document.querySelectorAll('.contact-method-checkbox');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                const isChecked = Array.from(checkboxes).some(c => c.checked);
+                const errorMsg = document.getElementById('contact-method-error');
+                const groupContainer = document.getElementById('contact-methods-group');
+                if (isChecked) {
+                    errorMsg.classList.add('hidden');
+                    groupContainer.classList.remove('border-red-400', 'ring-2', 'ring-red-100');
+                }
+            });
+        });
+
         form.addEventListener('submit', async function(event) {
             event.preventDefault(); // Stop standard redirect
+
+            // Custom Checkbox validation
+            const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+            const errorMsg = document.getElementById('contact-method-error');
+            const groupContainer = document.getElementById('contact-methods-group');
+
+            if (!isChecked) {
+                errorMsg.classList.remove('hidden');
+                groupContainer.classList.add('border-red-400', 'ring-2', 'ring-red-100');
+
+                // Smooth scroll to the error
+                groupContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return; // Stop submission
+            } else {
+                errorMsg.classList.add('hidden');
+                groupContainer.classList.remove('border-red-400', 'ring-2', 'ring-red-100');
+            }
 
             // Show loading state
             const btnTextContainer = document.getElementById('btn-text');
